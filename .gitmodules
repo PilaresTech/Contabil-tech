@@ -1,0 +1,3 @@
+[submodule "contabil-ms"]
+	path = contabil-ms
+	url = git@github.com:PilaresTech/contabil-ms.git
