@@ -1,0 +1,22 @@
+version: '3.7'
+
+services:  
+  db_contabil:
+    container_name: contabil
+    image: postgres
+    environment:
+      - POSTGRES_DB=contabil
+      - POSTGRES_USER=contabil
+      - POSTGRES_PASSWORD=contabil
+      - PGDATA=/data/postgres
+    volumes:
+      - ./db/v_db_contabil:/data/postgres
+    ports:
+      - "5432:5432"
+    networks:
+      - db
+    restart: always
+
+networks:
+  db:
+    driver: bridge
