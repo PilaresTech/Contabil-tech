@@ -4,3 +4,6 @@
 [submodule "ms-message"]
 	path = ms-message
 	url = git@github.com:PilaresTech/ms-message.git
+[submodule "ms-payments"]
+	path = ms-payments
+	url = git@github.com:PilaresTech/ms-payments.git
