@@ -1,9 +1,9 @@
 version: '3.7'
 
-services:
+services:  
   db_contabil:
-    container_name: contabil
-    image: postgres
+    container_name: db_contabil
+    image: postgres:15.4
     environment:
       - POSTGRES_DB=contabil
       - POSTGRES_USER=contabil
@@ -22,18 +22,34 @@ services:
     container_name: rabbitmq
     restart: always
     ports:
-        - 5672:5672
-        - 15672:15672
+      - 5672:5672
+      - 15672:15672
     volumes:
-        - ./dados:/var/lib/rabbitmq/
+      - ./volumes/rabbitmq:/var/lib/rabbitmq/
     environment:
-        - RABBITMQ_DEFAULT_USER=contabil
-        - RABBITMQ_DEFAULT_PASS=contabil
+      RABBITMQ_DEFAULT_USER: contabil
+      RABBITMQ_DEFAULT_PASS: contabil
     networks:
       - rabbitmq
 
+  contabil-ms:
+    container_name: contabil-ms
+    build: ./contabil-ms/
+    restart: always
+    ports:
+      - "80:8080"
+    networks:
+      - db
+      - rabbitmq
+      - app
+    depends_on:
+      - db_contabil
+      - rabbitmq
+
 networks:
+  rabbitmq:
+    driver: bridge
   db:
     driver: bridge
-  rabbitmq:
+  app:
     driver: bridge
