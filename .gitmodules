@@ -7,3 +7,6 @@
 [submodule "ms-payments"]
 	path = ms-payments
 	url = git@github.com:PilaresTech/ms-payments.git
+[submodule "contabil-front"]
+	path = contabil-front
+	url = git@github.com:PilaresTech/contabil-front.git
