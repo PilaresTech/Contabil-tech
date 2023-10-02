@@ -46,6 +46,13 @@ services:
       - db_contabil
       - rabbitmq
 
+  front-contabil-ms:
+    container_name: front-contabil-ms
+    build: ./contabil-front/
+    restart: always
+    ports:
+      - "3000:3000"
+      
 networks:
   rabbitmq:
     driver: bridge
